@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mauritania/Features/login/presentation/views/widgets/login_switcher.dart';
+import 'package:mauritania/Features/register/presentation/views/register_screen.dart';
 
 import '../../../../core/theme/colors.dart';
 import '../../../../core/theme/styles.dart';
@@ -46,9 +47,11 @@ class LoginScreenBody extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  // Navigator.push(context,  MaterialPageRoute(
-                  //   builder: (context) => const BotNavBar(),
-                  // ));
+                  Navigator.push(context,
+                    MaterialPageRoute(
+                      builder: (context) => const RegisterScreen(),
+                    ),
+                  );
                 },
                 child: Text(
                   'إنشاء حساب',

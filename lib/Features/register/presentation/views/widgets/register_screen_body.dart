@@ -1,10 +1,11 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:mauritania/Features/register/presentation/views/upload_documents_screen.dart';
 
-import '../../../../core/constants/unified_button.dart';
-import '../../../../core/constants/unified_form_field.dart';
-import '../../../../core/theme/colors.dart';
-import '../../../../core/theme/styles.dart';
+import '../../../../../core/constants/unified_button.dart';
+import '../../../../../core/constants/unified_form_field.dart';
+import '../../../../../core/theme/colors.dart';
+import '../../../../../core/theme/styles.dart';
 
 class RegisterScreenBody extends StatelessWidget {
   const RegisterScreenBody({super.key});
@@ -79,7 +80,11 @@ class RegisterScreenBody extends StatelessWidget {
             const SizedBox(height: 36),
             UnifiedButton(
               onPressed: () {
-
+                Navigator.push(context,
+                  MaterialPageRoute(
+                    builder: (context) => const UploadDocumentsScreen(),
+                  ),
+                );
               },
               title: 'انشاء حساب',
               isFullWidth: true,

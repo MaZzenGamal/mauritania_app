@@ -18,7 +18,7 @@ class UnifiedButton extends StatelessWidget {
     this.disabled = false,
     this.isRounded = false,
     this.isOutlined = false,
-    this.radius,
+    this.radius = 50, // Ensure radius is always 50
     this.height,
     this.elevation = 0,
     this.textStyle,
@@ -36,7 +36,7 @@ class UnifiedButton extends StatelessWidget {
   final bool disabled;
   final bool isRounded;
   final bool isOutlined;
-  final double? radius;
+  final double radius;
   final double? elevation;
   final TextStyle? textStyle;
 
@@ -48,38 +48,31 @@ class UnifiedButton extends StatelessWidget {
       decoration: isOutlined
           ? null
           : BoxDecoration(
-              gradient: color != null
-                  ? null
-                  : LinearGradient(
-                      colors: disabled || loading
-                          ? [
-                              ColorsManager.surface.withOpacity(0.5),
-                              ColorsManager.primary.withOpacity(0.5)
-                            ]
-                          : [ColorsManager.primary, ColorsManager.surface],
-                      begin: AlignmentDirectional.topEnd,
-                      end: AlignmentDirectional.bottomStart,
-                    ),
-              borderRadius: BorderRadius.circular(radius ?? 50),
-              color: color,
-            ),
+        borderRadius: BorderRadius.circular(radius), // Always keep radius 50
+        color: _getButtonColor(),
+      ),
       child: _parentWidget(
         !loading
             ? Text(
-                title,
-                style: textStyle ??
-                    TextStyles.bold_15
-                        .copyWith(color: textColor ?? (Colors.white)),
-                textAlign: TextAlign.center,
-              )
+          title,
+          style: textStyle ?? TextStyles.bold_15.copyWith(color: _getTextColor()),
+          textAlign: TextAlign.center,
+        )
             : LoadingIndicator(
-                colors: const [Colors.white],
-                indicatorType: Indicator.ballBeat,
-                strokeWidth: 2,
-              ),
+          colors: const [Colors.white],
+          indicatorType: Indicator.ballBeat,
+          strokeWidth: 2,
+        ),
         buttonStyle,
       ),
     );
+  }
+
+  Color _getTextColor() {
+    if (disabled || loading) {
+      return ColorsManager.surface.withOpacity(0.5); // Dimmed text color for disabled/loading
+    }
+    return textColor ?? Colors.white;
   }
 
   ButtonStyle? get buttonStyle {
@@ -88,31 +81,41 @@ class UnifiedButton extends StatelessWidget {
         elevation: elevation,
         side: BorderSide(color: borderColor ?? Colors.grey),
         shape: RoundedRectangleBorder(
-            borderRadius:
-                BorderRadius.circular(isRounded ? 1000 : radius ?? 10)),
-        disabledBackgroundColor: Colors.black45,
+          borderRadius: BorderRadius.circular(radius), // Always keep radius 50
+        ),
+        disabledBackgroundColor: ColorsManager.surface.withOpacity(0.3), // Custom disabled color
       );
     }
     return ElevatedButton.styleFrom(
       elevation: elevation,
-      backgroundColor: Colors.transparent,
+      backgroundColor: _getButtonColor(),
       foregroundColor: borderColor,
       shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(isRounded ? 1000 : radius ?? 10)),
-      disabledBackgroundColor: Colors.transparent,
+        borderRadius: BorderRadius.circular(radius), // Always keep radius 50
+      ),
+      disabledBackgroundColor: ColorsManager.surface.withOpacity(0.3), // Custom disabled color
     );
+  }
+
+  Color _getButtonColor() {
+    if (disabled || loading) {
+      return ColorsManager.primary.withOpacity(0.7); // Custom disabled color with reduced opacity
+    }
+    return color ?? ColorsManager.primary;
   }
 
   Widget _parentWidget(Widget child, ButtonStyle? style) {
     if (isOutlined) {
       return OutlinedButton(
-          onPressed: disabled || loading ? null : onPressed,
-          style: style,
-          child: child);
-    }
-    return ElevatedButton(
         onPressed: disabled || loading ? null : onPressed,
         style: style,
-        child: child);
+        child: child,
+      );
+    }
+    return ElevatedButton(
+      onPressed: disabled || loading ? null : onPressed,
+      style: style,
+      child: child,
+    );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:mauritania/Features/botNavBar/presentation/views/botNavBar_screen.dart';
 
 import '../../../../../core/constants/unified_button.dart';
 import '../../../../../core/constants/unified_form_field.dart';
@@ -51,15 +52,15 @@ class PhoneLogin extends StatelessWidget {
         ),
         UnifiedButton(
           onPressed: () {
-            // Navigator.pushReplacement(
-            //   context,
-            //   MaterialPageRoute(
-            //     builder: (context) => PopScope(
-            //       canPop:  false,
-            //       child: const BotNavBar(),
-            //     ),
-            //   ),
-            // );
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => PopScope(
+                  canPop:  false,
+                  child: const BotNavBarScreen(),
+                ),
+              ),
+            );
           },
           title: 'تسجيل الدخول',
           isFullWidth: true,

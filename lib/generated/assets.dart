@@ -3,5 +3,6 @@ class Assets {
   Assets._();
 
   static const String fontsURWDINArabic = 'assets/fonts/URW-DIN-Arabic.ttf';
+  static const String imagesCar = 'assets/images/car.png';
 
 }

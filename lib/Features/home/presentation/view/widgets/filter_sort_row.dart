@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
+import 'package:mauritania/Features/home/presentation/view/widgets/home_bottom_sheet.dart';
 
 import '../../../../../core/theme/colors.dart';
 
@@ -56,19 +57,27 @@ class _FilterSortRowState extends State<FilterSortRow> {
             ),
           ),
           const Spacer(),
-          Container(
-            width: 48,
-            height: 48,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              color: ColorsManager.primary,
-            ),
-            child: IconButton(
-              icon: const Icon(
+          GestureDetector(
+            onTap: (){
+              showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                backgroundColor: Colors.transparent,
+                builder: (context) => const HomeBottomSheet(),
+              );
+
+            },
+            child: Container(
+              width: 48,
+              height: 48,
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: ColorsManager.primary,
+              ),
+              child: Icon(
                 FluentIcons.filter_24_regular,
                 color: Colors.white,
               ),
-              onPressed: () {},
             ),
           ),
         ],

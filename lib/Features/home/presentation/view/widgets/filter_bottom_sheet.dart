@@ -5,8 +5,8 @@ import 'package:mauritania/core/theme/colors.dart';
 
 import '../../controller/filter_cubit/filter_cubit.dart';
 
-class HomeBottomSheet extends StatelessWidget {
-  const HomeBottomSheet({super.key});
+class FilterBottomSheet extends StatelessWidget {
+  const FilterBottomSheet({super.key});
 
   final List<String> categories = const [
     "الكل",

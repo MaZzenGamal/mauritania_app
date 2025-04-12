@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
-import 'package:mauritania/Features/home/presentation/view/widgets/home_bottom_sheet.dart';
+import 'package:mauritania/Features/home/presentation/view/widgets/filter_bottom_sheet.dart';
 
 import '../../../../../core/theme/colors.dart';
 
@@ -63,7 +63,7 @@ class _FilterSortRowState extends State<FilterSortRow> {
                 context: context,
                 isScrollControlled: true,
                 backgroundColor: Colors.transparent,
-                builder: (context) => const HomeBottomSheet(),
+                builder: (context) => const FilterBottomSheet(),
               );
 
             },

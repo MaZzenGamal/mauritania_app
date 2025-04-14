@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mauritania/Features/home/presentation/view/widgets/advertisement_details.dart';
 
-import '../../../../../core/theme/colors.dart';
 import '../../../../../core/theme/styles.dart';
 import '../../../../../generated/assets.dart';
 
@@ -18,14 +18,14 @@ class _AdvertisementCardState extends State<AdvertisementCard> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(
-        //     builder: (context) => PopScope(
-        //       child: const ProductDetails(),
-        //     ),
-        //   ),
-        // );
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => PopScope(
+              child: const AdvertisementDetails(),
+            ),
+          ),
+        );
       },
       child: Container(
         width: 160,

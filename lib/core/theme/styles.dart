@@ -17,6 +17,13 @@ class TextStyles {
   static TextStyle get medium_20 => baseStyle(20, FontWeight.w500);
   static TextStyle get regular_20 => baseStyle(20, FontWeight.w400);
 
+  //==================== Size 18 ====================//
+  static TextStyle get extraBold_18 => baseStyle(18, FontWeight.w800);
+  static TextStyle get bold_18 => baseStyle(18, FontWeight.w700);
+  static TextStyle get semiBold_18 => baseStyle(18, FontWeight.w600);
+  static TextStyle get medium_18 => baseStyle(18, FontWeight.w500);
+  static TextStyle get regular_18 => baseStyle(18, FontWeight.w400);
+
   //==================== Size 16 ====================//
   static TextStyle get extraBold_16 => baseStyle(16, FontWeight.w800);
   static TextStyle get bold_16 => baseStyle(16, FontWeight.w700);

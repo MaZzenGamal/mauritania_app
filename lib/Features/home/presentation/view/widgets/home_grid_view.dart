@@ -6,23 +6,31 @@ class HomeGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: GridView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: 6,
-          clipBehavior: Clip.none,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount:MediaQuery.of(context).orientation.index == 0 ? 2 : 3,
-            childAspectRatio: .62,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        // Calculate spacing based on screen width
+        final screenWidth = constraints.maxWidth;
+        final spacing = screenWidth * 0.03;
+
+        return Padding(
+          padding: EdgeInsets.all(spacing),
+          child: GridView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: 6,
+            clipBehavior: Clip.none,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: MediaQuery.of(context).orientation == Orientation.portrait ? 2 : 3,
+              childAspectRatio: 0.62,
+              crossAxisSpacing: spacing,
+              mainAxisSpacing: spacing,
+            ),
+            itemBuilder: (context, index) {
+              return const AdvertisementCard();
+            },
           ),
-          itemBuilder: (context, index) {
-            return Center(
-                child: AdvertisementCard());
-          }),
+        );
+      },
     );
   }
 }

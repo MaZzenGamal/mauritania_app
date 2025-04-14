@@ -18,10 +18,14 @@ class UnifiedButton extends StatelessWidget {
     this.disabled = false,
     this.isRounded = false,
     this.isOutlined = false,
-    this.radius = 50, // Ensure radius is always 50
+    this.radius = 50,
     this.height,
     this.elevation = 0,
     this.textStyle,
+    this.icon, // New optional icon parameter
+    this.iconSize = 20, // Default icon size
+    this.iconColor, // Optional icon color
+    this.iconPadding = 8, // Space between icon and text
   });
 
   final Color? color;
@@ -39,6 +43,10 @@ class UnifiedButton extends StatelessWidget {
   final double radius;
   final double? elevation;
   final TextStyle? textStyle;
+  final IconData? icon; // Icon to display before the title
+  final double iconSize; // Size of the icon
+  final Color? iconColor; // Color of the icon
+  final double iconPadding; // Padding between icon and text
 
   @override
   Widget build(BuildContext context) {
@@ -48,16 +56,12 @@ class UnifiedButton extends StatelessWidget {
       decoration: isOutlined
           ? null
           : BoxDecoration(
-        borderRadius: BorderRadius.circular(radius), // Always keep radius 50
+        borderRadius: BorderRadius.circular(radius),
         color: _getButtonColor(),
       ),
       child: _parentWidget(
         !loading
-            ? Text(
-          title,
-          style: textStyle ?? TextStyles.bold_15.copyWith(color: _getTextColor()),
-          textAlign: TextAlign.center,
-        )
+            ? _buildContent()
             : LoadingIndicator(
           colors: const [Colors.white],
           indicatorType: Indicator.ballBeat,
@@ -68,9 +72,35 @@ class UnifiedButton extends StatelessWidget {
     );
   }
 
+  Widget _buildContent() {
+    if (icon == null) {
+      return Text(
+        title,
+        style: textStyle ?? TextStyles.bold_15.copyWith(color: _getTextColor()),
+        textAlign: TextAlign.center,
+      );
+    }
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(
+          icon,
+          size: iconSize,
+          color: iconColor ?? _getTextColor(),
+        ),
+        SizedBox(width: iconPadding),
+        Text(
+          title,
+          style: textStyle ?? TextStyles.bold_15.copyWith(color: _getTextColor()),
+        ),
+      ],
+    );
+  }
+
   Color _getTextColor() {
     if (disabled || loading) {
-      return ColorsManager.surface.withOpacity(0.5); // Dimmed text color for disabled/loading
+      return ColorsManager.surface.withOpacity(0.5);
     }
     return textColor ?? Colors.white;
   }
@@ -81,9 +111,9 @@ class UnifiedButton extends StatelessWidget {
         elevation: elevation,
         side: BorderSide(color: borderColor ?? Colors.grey),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(radius), // Always keep radius 50
+          borderRadius: BorderRadius.circular(radius),
         ),
-        disabledBackgroundColor: ColorsManager.surface.withOpacity(0.3), // Custom disabled color
+        disabledBackgroundColor: ColorsManager.surface.withOpacity(0.3),
       );
     }
     return ElevatedButton.styleFrom(
@@ -91,15 +121,15 @@ class UnifiedButton extends StatelessWidget {
       backgroundColor: _getButtonColor(),
       foregroundColor: borderColor,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(radius), // Always keep radius 50
+        borderRadius: BorderRadius.circular(radius),
       ),
-      disabledBackgroundColor: ColorsManager.surface.withOpacity(0.3), // Custom disabled color
+      disabledBackgroundColor: ColorsManager.surface.withOpacity(0.3),
     );
   }
 
   Color _getButtonColor() {
     if (disabled || loading) {
-      return ColorsManager.primary.withOpacity(0.7); // Custom disabled color with reduced opacity
+      return ColorsManager.primary.withOpacity(0.7);
     }
     return color ?? ColorsManager.primary;
   }

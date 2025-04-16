@@ -7,18 +7,15 @@ class FavouritesListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: ListView.separated(
-            itemBuilder:  (context, index) {
-              return FavouritesListViewItem();
-            },
-            separatorBuilder:  (context, index) {
-              return const SizedBox(height: 8,);
-            },
-            itemCount: 10),
-      ),
-    );
+    return ListView.separated(
+      physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        itemBuilder:  (context, index) {
+          return FavouritesListViewItem();
+        },
+        separatorBuilder:  (context, index) {
+          return const SizedBox(height: 8,);
+        },
+        itemCount: 10);
   }
 }

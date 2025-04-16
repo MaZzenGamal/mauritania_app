@@ -9,7 +9,7 @@ class OrdersScreenBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 12.0),
       child: SingleChildScrollView(
         child: Column(
           children: [

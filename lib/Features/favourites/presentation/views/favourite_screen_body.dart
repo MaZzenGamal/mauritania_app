@@ -9,17 +9,22 @@ class FavouriteScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Center(
-          child: Text(
-            'المفضلة',
-            style: TextStyles.bold_20,
-          ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12.0),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Center(
+              child: Text(
+                'المفضلة',
+                style: TextStyles.bold_20,
+              ),
+            ),
+            const SizedBox(height: 20),
+            FavouritesListView()
+          ]
         ),
-        const SizedBox(height: 20),
-        FavouritesListView()
-      ]
+      ),
     );
   }
 }

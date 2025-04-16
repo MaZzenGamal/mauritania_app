@@ -42,6 +42,7 @@ class TextStyles {
   static TextStyle get regular_14 => baseStyle(14, FontWeight.w400);
 
   //==================== Size 12 ====================//
+  static TextStyle get bold_12 => baseStyle(12, FontWeight.w700);
   static TextStyle get medium_12 => baseStyle(12, FontWeight.w500);
   static TextStyle get regular_12 => baseStyle(12, FontWeight.w400);
 

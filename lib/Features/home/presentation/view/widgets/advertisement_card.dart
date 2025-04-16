@@ -1,6 +1,7 @@
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:mauritania/Features/home/presentation/view/widgets/advertisement_details.dart';
-
+import '../../../../../core/theme/colors.dart';
 import '../../../../../core/theme/styles.dart';
 import '../../../../../generated/assets.dart';
 
@@ -17,55 +18,59 @@ class _AdvertisementCardState extends State<AdvertisementCard> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => PopScope(
-              child: const AdvertisementDetails(),
-            ),
+            builder: (context) => const AdvertisementDetails(),
           ),
         );
       },
-      child: Container(
-        width: 160,
-        height: 250,
-        padding: const EdgeInsets.all(14),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.2),
-              spreadRadius: 1,
-              blurRadius: 5,
-              offset: const Offset(0, 3), // changes position of shadow
-            ),
-          ],
+      child: Card(
+        elevation: 2,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Image Container
             Stack(
               children: [
+                // Product Image
                 Container(
-                  height: 150,
+                  height: 140,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(16),
+                      topRight: Radius.circular(16),
+                    ),
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Colors.grey.shade100,
+                        Colors.grey.shade200,
+                      ],
+                    ),
                   ),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(16),
+                      topRight: Radius.circular(16),
+                    ),
                     child: Image.asset(
                       Assets.imagesCar,
                       fit: BoxFit.cover,
                     ),
                   ),
                 ),
+
+                // Favorite Button
                 Positioned(
-                  top: 3,
-                  left: 3,
+                  top: 10,
+                  right: 10,
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
@@ -73,43 +78,76 @@ class _AdvertisementCardState extends State<AdvertisementCard> {
                       });
                     },
                     child: Container(
-                      padding: const EdgeInsets.all(2),
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
+                      padding: const EdgeInsets.all(6),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.9),
                         shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            blurRadius: 4,
+                            spreadRadius: 1,
+                          ),
+                        ],
                       ),
                       child: Icon(
-                        isFavorite ? Icons.favorite_rounded : Icons.favorite_outline_rounded,
-                        size: 25,
-                        color: isFavorite ? Colors.red : Colors.black, // Change color based on state
+                        isFavorite
+                            ? FluentIcons.heart_24_filled
+                            : FluentIcons.heart_24_regular,
+                        color: ColorsManager.primary,
+                        size: 22,
+                      ),
+                    ),
+                  ),
+                ),
+
+                // Category Chip
+                Positioned(
+                  bottom: 10,
+                  left: 10,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 10, vertical: 5),
+                    decoration: BoxDecoration(
+                      color: Colors.black.withOpacity(0.7),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Text(
+                      'سيارات',
+                      style: TextStyles.medium_12.copyWith(
+                        color: Colors.white,
+                        letterSpacing: 0.5,
                       ),
                     ),
                   ),
                 ),
               ],
             ),
-            const SizedBox(height: 8),
 
-            // Product title
-            Text(
-              'Whiting Cream',
-              style: TextStyles.regular_12,
-            ),
-            const SizedBox(height: 4),
-
-            // Star rating
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: List.generate(3, (index) {
-                return const Icon(Icons.star, color: Colors.amber, size: 16);
-              }),
-            ),
-            const SizedBox(height: 4),
-
-            // Price
-            Text(
-              '\$15.00',
-              style: TextStyles.regular_12,
+            // Product Details
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Product Name
+                  Text(
+                    'مرسيدس S-Class 2023',
+                    style: TextStyles.bold_14.copyWith(
+                      height: 1.3,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 6),
+                  Text(
+                    '300,000 دولار',
+                    style: TextStyles.bold_16.copyWith(
+                      color: Colors.green.shade700,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),

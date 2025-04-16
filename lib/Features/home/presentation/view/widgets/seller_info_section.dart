@@ -44,18 +44,36 @@ class SellerInfoSection extends StatelessWidget {
               // Seller profile row
               Row(
                 children: [
-                  Container(
-                    width: 48,
-                    height: 48,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: const DecorationImage(
-                        image: NetworkImage(
-                            'https://randomuser.me/api/portraits/men/1.jpg'),
-                        fit: BoxFit.cover,
+                  Stack(
+                    alignment: Alignment.bottomRight,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: Colors.blue,
+                            width: 1.5,
+                          ),
+                        ),
+                        child: const CircleAvatar(
+                          radius: 24,
+                          backgroundImage: NetworkImage(
+                              'https://randomuser.me/api/portraits/men/1.jpg'),
+                        ),
                       ),
-                      border: Border.all(color: Colors.grey.shade200),
-                    ),
+                      Container(
+                        padding: const EdgeInsets.all(2),
+                        decoration: const BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(
+                          Icons.verified,
+                          color: Colors.blue,
+                          size: 14,
+                        ),
+                      ),
+                    ],
                   ),
                   const SizedBox(width: 12),
                   Expanded(

@@ -15,7 +15,7 @@ class FavouritesListView extends StatelessWidget {
               return FavouritesListViewItem();
             },
             separatorBuilder:  (context, index) {
-              return const SizedBox(height: 12,);
+              return const SizedBox(height: 8,);
             },
             itemCount: 10),
       ),

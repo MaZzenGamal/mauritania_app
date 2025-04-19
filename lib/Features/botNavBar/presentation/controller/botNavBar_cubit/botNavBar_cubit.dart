@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mauritania/Features/favourites/presentation/views/favourites_screen.dart';
 import 'package:mauritania/Features/home/presentation/view/home_screen.dart';
 import 'package:mauritania/Features/orders/presentation/views/orders_screen.dart';
-import 'package:meta/meta.dart';
 
-import '../../../../profile/presentation/views/profile_screen.dart';
+
+import '../../../../settings/presentation/views/settings_screen.dart';
 
 part 'botNavBar_state.dart';
 
@@ -20,7 +20,7 @@ class BotNavBarCubit extends Cubit<BotNavBarState> {
     const HomeScreen(),
     const FavouritesScreen(),
     const OrdersScreen(),
-    const ProfileScreen(),
+    const SettingsScreen(),
   ];
 
   void changeIndex(int index) {

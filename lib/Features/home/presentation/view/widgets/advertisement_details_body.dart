@@ -6,6 +6,7 @@ import 'package:mauritania/core/constants/unified_button.dart';
 
 import '../../../../../core/theme/colors.dart';
 import '../../../../../core/theme/styles.dart';
+import '../../../../chat/presentation/views/chat_screen.dart';
 
 class AdvertisementDetailsBody extends StatelessWidget {
   const AdvertisementDetailsBody({super.key});
@@ -25,7 +26,7 @@ class AdvertisementDetailsBody extends StatelessWidget {
           const SizedBox(height: 28),
           const SellerInfoSection(),
           const SizedBox(height: 32),
-          actionButtons(),
+          actionButtons(context),
           const SizedBox(height: 16),
         ],
       ),
@@ -143,7 +144,7 @@ class _ExpandableDescriptionState extends State<ExpandableDescription> {
   }
 }
 
-Row actionButtons() {
+Row actionButtons(context) {
   return Row(
     children: [
       Expanded(
@@ -155,7 +156,11 @@ Row actionButtons() {
       const SizedBox(width: 12),
       Expanded(
           child: UnifiedButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(context,  MaterialPageRoute(builder: (context) {
+            return const ChatScreen();
+          }));
+        },
         title: 'محادثه',
         icon: FluentIcons.chat_24_filled,
       )),

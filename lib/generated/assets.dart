@@ -4,5 +4,10 @@ class Assets {
 
   static const String fontsURWDINArabic = 'assets/fonts/URW-DIN-Arabic.ttf';
   static const String imagesCar = 'assets/images/car.png';
+  static const String imagesCar1 = 'assets/images/car1.jpg';
+  static const String imagesCar2 = 'assets/images/car2.jpg';
+  static const String imagesCar3 = 'assets/images/car3.jpg';
+  static const String imagesCar4 = 'assets/images/car4.jpg';
+  static const String imagesPerson = 'assets/images/person.jpg';
 
 }

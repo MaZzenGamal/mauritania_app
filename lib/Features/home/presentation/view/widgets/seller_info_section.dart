@@ -5,6 +5,7 @@ import 'package:mauritania/core/theme/colors.dart';
 import 'package:clipboard/clipboard.dart'; // Add this import
 
 import '../../../../../core/theme/styles.dart';
+import '../../../../../generated/assets.dart';
 
 class SellerInfoSection extends StatelessWidget {
   const SellerInfoSection({super.key});
@@ -57,8 +58,8 @@ class SellerInfoSection extends StatelessWidget {
                         ),
                         child: const CircleAvatar(
                           radius: 24,
-                          backgroundImage: NetworkImage(
-                              'https://randomuser.me/api/portraits/men/1.jpg'),
+                          backgroundImage: AssetImage(
+                              Assets.imagesPerson),
                         ),
                       ),
                       Container(

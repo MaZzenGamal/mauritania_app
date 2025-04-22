@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         locale: const Locale('ar'),
       debugShowCheckedModeBanner: false,
       theme:  AppTheme.theme,
-      home: BotNavBarScreen()
+      home: SplashScreen()
     );
   }
 }

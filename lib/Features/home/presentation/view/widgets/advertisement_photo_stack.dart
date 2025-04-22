@@ -1,6 +1,8 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../generated/assets.dart';
+
 class AdvertisementPhotoStack extends StatefulWidget {
   const AdvertisementPhotoStack({super.key});
 
@@ -13,11 +15,11 @@ class _AdvertisementPhotoStackState extends State<AdvertisementPhotoStack> {
   int _selectedImageIndex = 0;
 
   final List<String> _imageUrls = [
-    'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0',
-    'https://images.unsplash.com/photo-1532298229144-0ec0c57515c7',
-    'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3',
-    'https://images.unsplash.com/photo-1494972308805-463bc619d34e',
-    'https://images.unsplash.com/photo-1505740420928-5e560c06d30e',
+    Assets.imagesCar,
+    Assets.imagesCar1,
+    Assets.imagesCar2,
+    Assets.imagesCar3,
+    Assets.imagesCar4,
   ];
 
   void _showFullscreenImage(BuildContext context) {
@@ -34,7 +36,7 @@ class _AdvertisementPhotoStackState extends State<AdvertisementPhotoStack> {
                 minScale: 1,
                 maxScale: 3,
                 child: Center(
-                  child: Image.network(
+                  child: Image.asset(
                     _imageUrls[_selectedImageIndex],
                     fit: BoxFit.contain,
                     width: double.infinity,
@@ -71,7 +73,7 @@ class _AdvertisementPhotoStackState extends State<AdvertisementPhotoStack> {
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(16),
-                  child: Image.network(
+                  child: Image.asset(
                     _imageUrls[_selectedImageIndex],
                     fit: BoxFit.cover,
                     width: double.infinity,
@@ -186,7 +188,7 @@ class _AdvertisementPhotoStackState extends State<AdvertisementPhotoStack> {
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(6),
-                    child: Image.network(
+                    child: Image.asset(
                       _imageUrls[index],
                       fit: BoxFit.cover,
                     ),

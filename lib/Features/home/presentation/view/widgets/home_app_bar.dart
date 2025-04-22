@@ -2,6 +2,8 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:mauritania/core/constants/unified_form_field.dart';
 
+import '../../../../notifications/presentation/views/notifications_screen.dart';
+
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({super.key});
 
@@ -23,7 +25,11 @@ class HomeAppBar extends StatelessWidget {
           Stack(
             children: [
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return  const NotificationsScreen();
+                  }));
+                },
                 padding: EdgeInsets.zero,
                 icon: const Icon(
                   FluentIcons.alert_24_regular,

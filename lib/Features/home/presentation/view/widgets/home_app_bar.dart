@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mauritania/core/constants/unified_form_field.dart';
 
 import '../../../../notifications/presentation/views/notifications_screen.dart';
+import 'support_screen.dart';
 
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({super.key});
@@ -14,8 +15,8 @@ class HomeAppBar extends StatelessWidget {
         color: Colors.white,
         border: Border(
           bottom: BorderSide(
-            color: Colors.grey.shade300, // يمكنك تغيير اللون هنا إذا أردت
-            width: 1, // سمك الحد
+            color: Colors.grey.shade300,
+            width: 1,
           ),
         ),
       ),
@@ -27,7 +28,7 @@ class HomeAppBar extends StatelessWidget {
               IconButton(
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return  const NotificationsScreen();
+                    return const NotificationsScreen();
                   }));
                 },
                 padding: EdgeInsets.zero,
@@ -58,6 +59,18 @@ class HomeAppBar extends StatelessWidget {
                 color: Colors.black38,
               ),
             ),
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return const SupportScreen();
+              }));
+            },
+            icon: const Icon(
+              FluentIcons.person_support_24_regular,
+              size: 30,
+            ),
+            tooltip: 'Contact Support',
           ),
           const SizedBox(width: 16),
           const Text(

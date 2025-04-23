@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mauritania/Features/chat/presentation/views/chat_screen.dart';
 import 'package:mauritania/Features/favourites/presentation/views/favourites_screen.dart';
 import 'package:mauritania/Features/home/presentation/view/home_screen.dart';
 import 'package:mauritania/Features/orders/presentation/views/orders_screen.dart';
+import 'package:mauritania/Features/post_ad/presentation/views/post_ad_screen.dart';
 
 
 import '../../../../settings/presentation/views/settings_screen.dart';
@@ -19,7 +21,8 @@ class BotNavBarCubit extends Cubit<BotNavBarState> {
   List<Widget> screens = [
     const HomeScreen(),
     const FavouritesScreen(),
-    const OrdersScreen(),
+    const PostAdScreen(),
+    const ChatScreen(),
     const SettingsScreen(),
   ];
 

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mauritania/Features/orders/presentation/views/widgets/orders_list_view_item.dart';
 
-import '../../../../core/theme/styles.dart';
-
 class OrdersScreenBody extends StatelessWidget {
   const OrdersScreenBody({super.key});
 
@@ -13,13 +11,6 @@ class OrdersScreenBody extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            Center(
-              child: Text(
-                'طلباتي',
-                style: TextStyles.bold_20,
-              ),
-            ),
-            const SizedBox(height: 20),
             ListView.separated(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,

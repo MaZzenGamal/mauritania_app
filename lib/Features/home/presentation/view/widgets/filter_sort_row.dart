@@ -56,7 +56,15 @@ class _FilterSortRowState extends State<FilterSortRow> {
               ),
             ),
           ),
-          const Spacer(),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Container(
+              height: 1,
+              width: 70,
+              color: Colors.grey.shade300,
+            ),
+          ),
+          const SizedBox(width: 8),
           GestureDetector(
             onTap: (){
               showModalBottomSheet(

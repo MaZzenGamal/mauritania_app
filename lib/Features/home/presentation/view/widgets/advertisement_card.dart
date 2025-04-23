@@ -6,7 +6,9 @@ import '../../../../../core/theme/styles.dart';
 import '../../../../../generated/assets.dart';
 
 class AdvertisementCard extends StatefulWidget {
-  const AdvertisementCard({super.key});
+  final bool isVip;
+
+  const AdvertisementCard({super.key, this.isVip = false});
 
   @override
   State<AdvertisementCard> createState() => _AdvertisementCardState();
@@ -34,7 +36,6 @@ class _AdvertisementCardState extends State<AdvertisementCard> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Image Container
             Stack(
               children: [
                 // Product Image
@@ -101,13 +102,37 @@ class _AdvertisementCardState extends State<AdvertisementCard> {
                   ),
                 ),
 
+                // VIP Badge
+                if (widget.isVip)
+                  Positioned(
+                    top: 10,
+                    left: 10,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                      decoration: BoxDecoration(
+                        color: Colors.amber.shade600,
+                        borderRadius: BorderRadius.circular(12),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.amber.withOpacity(0.4),
+                            blurRadius: 6,
+                            offset: const Offset(0, 2),
+                          )
+                        ],
+                      ),
+                      child: Text(
+                        'sponsored',
+                        style: TextStyles.bold_12.copyWith( color: Colors.white),
+                      ),
+                    ),
+                  ),
+
                 // Category Chip
                 Positioned(
                   bottom: 10,
                   left: 10,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 5),
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     decoration: BoxDecoration(
                       color: Colors.black.withOpacity(0.7),
                       borderRadius: BorderRadius.circular(12),
@@ -130,12 +155,9 @@ class _AdvertisementCardState extends State<AdvertisementCard> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Product Name
                   Text(
                     'مرسيدس S-Class 2023',
-                    style: TextStyles.bold_14.copyWith(
-                      height: 1.3,
-                    ),
+                    style: TextStyles.bold_14.copyWith(height: 1.3),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),

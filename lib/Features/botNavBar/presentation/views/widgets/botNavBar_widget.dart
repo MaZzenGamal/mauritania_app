@@ -40,12 +40,16 @@ class BotNavBarWidget extends StatelessWidget {
               label: 'المفضلة',
             ),
             BottomNavigationBarItem(
-              icon: Icon(FluentIcons.re_order_dots_vertical_24_regular),
-              label: 'طلباتي',
+              icon: Icon(FluentIcons.add_24_filled),
+              label: 'إعلان',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(FluentIcons.chat_24_regular),
+              label: 'الرسائل',
             ),
             BottomNavigationBarItem(
               icon: Icon(FluentIcons.person_24_regular),
-              label: 'البروفايل',
+              label: 'الحساب',
             ),
           ],
         );

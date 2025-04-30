@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-import 'package:flutter/widgets.dart';
 
 part 'filter_state.dart';
 
@@ -10,6 +9,7 @@ class FilterCubit extends Cubit<FilterState> {
   List<int> selectedCategories = [];
   int selectedSortIndex = 0;
   RangeValues selectedRange = const RangeValues(125, 500);
+  int selectedCityIndex = -1; // Default: No city selected
 
   FilterCubit() : super(FilterInitial());
 
@@ -29,6 +29,12 @@ class FilterCubit extends Cubit<FilterState> {
     emit(FilterUpdated());
   }
 
+  // Method to update city index
+  void selectCity(int index) {
+    selectedCityIndex = index;
+    emit(FilterUpdated());
+  }
+
   // Method to update price range
   void updatePriceRange(RangeValues range) {
     selectedRange = range;
@@ -37,6 +43,9 @@ class FilterCubit extends Cubit<FilterState> {
 
   // Apply filter logic
   void applyFilter() {
-    print("Filter applied with: selectedCategories: $selectedCategories, selectedSortIndex: $selectedSortIndex, selectedRange: $selectedRange");
+    print(
+        "Filter applied with: selectedCategories: $selectedCategories, "
+            "selectedSortIndex: $selectedSortIndex, selectedRange: $selectedRange, "
+            "selectedCityIndex: $selectedCityIndex");
   }
 }

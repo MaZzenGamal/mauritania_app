@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mauritania/Features/post_ad/presentation/views/widgets/categoryBottomSheet.dart';
 import 'package:mauritania/Features/post_ad/presentation/views/widgets/category_field.dart';
+import 'package:mauritania/Features/post_ad/presentation/views/widgets/city_bottom_sheet.dart';
+import 'package:mauritania/Features/post_ad/presentation/views/widgets/city_field.dart';
 import 'package:mauritania/Features/post_ad/presentation/views/widgets/description_field.dart';
 import 'package:mauritania/Features/post_ad/presentation/views/widgets/image_section.dart';
 import 'package:mauritania/Features/post_ad/presentation/views/widgets/price_field.dart';
@@ -27,6 +29,7 @@ class _PostAdScreenBodyState extends State<PostAdScreenBody> {
   final _descriptionController = TextEditingController();
   final _priceController = TextEditingController();
   String? _selectedCategory;
+  String? _selectedCity;
   List<String> _imageUrls = [];
   bool _isSubmitting = false;
   bool _showSuccess = false;
@@ -39,6 +42,20 @@ class _PostAdScreenBodyState extends State<PostAdScreenBody> {
     'خدمات',
     'أخرى',
   ];
+
+  final List<String> _cities = [
+    'لندن',
+    'ليفربول',
+    'مانشستر',
+    'برمنغهام',
+    'ليدز',
+    'نوتنغهام',
+    'شيفيلد',
+    'بريستول',
+    'كامبريدج',
+    'أوكسفورد',
+  ];
+
 
   @override
   void dispose() {
@@ -59,6 +76,23 @@ class _PostAdScreenBodyState extends State<PostAdScreenBody> {
         onCategorySelected: (category) {
           setState(() {
             _selectedCategory = category;
+          });
+        },
+      ),
+    );
+  }
+
+  void _showCityDialog() {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (context) => CityBottomSheet(
+        cities: _cities,
+        selectedCity: _selectedCity,
+        onCitySelected: (city) {
+          setState(() {
+            _selectedCity = city;
           });
         },
       ),
@@ -149,6 +183,11 @@ class _PostAdScreenBodyState extends State<PostAdScreenBody> {
                     CategoryField(
                       selectedCategory: _selectedCategory,
                       onTap: _showCategoryDialog,
+                    ),
+                    const SizedBox(height: 24),
+                    CityField(
+                      selectedCity: _selectedCity,
+                      onTap: _showCityDialog,
                     ),
                     const SizedBox(height: 24),
                     ImagesSection(

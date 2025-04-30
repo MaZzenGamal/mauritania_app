@@ -1,3 +1,4 @@
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mauritania/core/constants/unified_form_field.dart';
@@ -14,7 +15,7 @@ class PriceField extends StatelessWidget {
       controller: controller,
       label: 'السعر',
       hint: 'أدخل السعر (مثال: 99.99)',
-      prefix: const Icon(Icons.attach_money, color: ColorsManager.primary70),
+      prefix: const Icon(FluentIcons.currency_dollar_euro_24_filled, color: ColorsManager.primary70),
       prefixText: 'ر.س ',
       validator: (value) => value!.isEmpty ? 'السعر مطلوب' : null,
       isRequired: true,

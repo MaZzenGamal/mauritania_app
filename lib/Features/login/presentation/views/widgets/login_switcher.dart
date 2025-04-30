@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mauritania/Features/login/presentation/views/widgets/email_login.dart';
 import 'package:mauritania/Features/login/presentation/views/widgets/phone_login.dart';
 import 'package:mauritania/core/theme/styles.dart';
-import '../../../../../core/constants/unified_form_field.dart';
+
 import '../../../../../core/theme/colors.dart';
 
 class LoginSwitcher extends StatelessWidget {
@@ -32,7 +32,7 @@ class LoginSwitcher extends StatelessWidget {
             ),
             const SizedBox(height: 24), // Space between TabBar and TabBarView
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.68,
+              height: MediaQuery.of(context).size.height * .5,
               child: TabBarView(
                 children: [
                   Padding(

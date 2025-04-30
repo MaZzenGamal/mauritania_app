@@ -2,6 +2,7 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:mauritania/core/constants/unified_form_field.dart';
 
+import '../../../../../generated/assets.dart';
 import '../../../../notifications/presentation/views/notifications_screen.dart';
 import 'support_screen.dart';
 
@@ -72,14 +73,7 @@ class HomeAppBar extends StatelessWidget {
             ),
             tooltip: 'Contact Support',
           ),
-          const SizedBox(width: 16),
-          const Text(
-            'Logo',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
+          Image.asset(Assets.iconsLogo,scale: 18,),
         ],
       ),
     );

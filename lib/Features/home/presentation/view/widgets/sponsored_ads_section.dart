@@ -7,7 +7,7 @@ class SponsoredAdsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 280, // Enough height for card
+      height: 240, // Enough height for card
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: 16),

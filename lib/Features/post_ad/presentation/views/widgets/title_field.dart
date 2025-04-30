@@ -1,3 +1,4 @@
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import '../../../../../core/constants/unified_form_field.dart';
 import '../../../../../core/theme/colors.dart';
@@ -14,7 +15,7 @@ class TitleField extends StatelessWidget {
       controller: controller,
       label: 'عنوان الإعلان',
       hint: 'أدخل عنوانًا جذابًا لإعلانك',
-      prefix: const Icon(Icons.title, color: ColorsManager.primary70),
+      prefix:  Icon(FluentIcons.text_12_regular, color: ColorsManager.primary70),
       validator: (value) => value!.isEmpty ? 'العنوان مطلوب' : null,
       isRequired: true,
       maxLines: 1,

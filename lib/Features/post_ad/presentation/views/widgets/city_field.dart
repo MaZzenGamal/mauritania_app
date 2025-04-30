@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/theme/colors.dart';
 
-class CategoryField extends StatelessWidget {
-  final String? selectedCategory;
+class CityField extends StatelessWidget {
+  final String? selectedCity;
   final VoidCallback onTap;
 
-  const CategoryField({super.key, required this.selectedCategory, required this.onTap});
+  const CityField({super.key, required this.selectedCity, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -19,20 +19,20 @@ class CategoryField extends StatelessWidget {
           child:  Row(
             children: [
               Text(
-                'اختر الفئة',
+                'اختر المدينه',
                 style: TextStyle(
                   color: ColorsManager.primaryDark,
                   fontWeight: FontWeight.w600,
                   fontSize: 16,
                 ),
               ),
-                Text(
-                  ' *',
-                  style: TextStyle(
-                    color: ColorsManager.accentDark,
-                    fontWeight: FontWeight.bold,
-                  ),
+              Text(
+                ' *',
+                style: TextStyle(
+                  color: ColorsManager.accentDark,
+                  fontWeight: FontWeight.bold,
                 ),
+              ),
             ],
           ),
         ),
@@ -43,10 +43,10 @@ class CategoryField extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
             decoration: BoxDecoration(
               border: Border.all(
-                color: selectedCategory == null
-                    ? ColorsManager.primary40
-                    : ColorsManager.primaryOpacity20,
-                width: 1.5
+                  color: selectedCity == null
+                      ? ColorsManager.primary40
+                      : ColorsManager.primaryOpacity20,
+                  width: 1.5
               ),
               borderRadius: BorderRadius.circular(50),
               color: ColorsManager.primary10,
@@ -63,16 +63,16 @@ class CategoryField extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Icon(
-                  FluentIcons.shapes_24_regular,
-                  color: selectedCategory == null ? ColorsManager.grey600 : ColorsManager.primary70,
+                  FluentIcons.city_24_regular,
+                  color: selectedCity == null ? ColorsManager.grey600 : ColorsManager.primary70,
                 ),
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: Text(
-                      selectedCategory ?? 'اختر الفئة',
+                      selectedCity ?? 'اختر المدينه',
                       style: TextStyle(
-                        color: selectedCategory == null ? ColorsManager.grey600 : ColorsManager.grey900,
+                        color: selectedCity == null ? ColorsManager.grey600 : ColorsManager.grey900,
                       ),
                       textAlign: TextAlign.end,
                     ),

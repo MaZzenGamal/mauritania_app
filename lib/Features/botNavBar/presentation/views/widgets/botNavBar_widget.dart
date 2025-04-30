@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/theme/colors.dart';
 import '../../controller/botNavBar_cubit/botNavBar_cubit.dart';
 
-
 class BotNavBarWidget extends StatelessWidget {
   const BotNavBarWidget({super.key});
 
@@ -13,12 +12,11 @@ class BotNavBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<BotNavBarCubit, BotNavBarState>(
       builder: (context, state) {
+        final cubit = BotNavBarCubit.get(context);
         return BottomNavigationBar(
-          currentIndex: BotNavBarCubit
-              .get(context)
-              .currentIndex,
+          currentIndex: cubit.currentIndex,
           onTap: (value) {
-            BotNavBarCubit.get(context).changeIndex(value);
+            cubit.changeIndex(value);
           },
           showSelectedLabels: true,
           showUnselectedLabels: true,
@@ -28,26 +26,36 @@ class BotNavBarWidget extends StatelessWidget {
           ),
           selectedItemColor: ColorsManager.primary,
           unselectedItemColor: Colors.grey,
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(
-                FluentIcons.home_24_regular,
-              ),
+          items: [
+            const BottomNavigationBarItem(
+              icon: Icon(FluentIcons.home_24_regular),
               label: 'الرئيسية',
             ),
-            BottomNavigationBarItem(
+            const BottomNavigationBarItem(
               icon: Icon(FluentIcons.heart_24_regular),
               label: 'المفضلة',
             ),
             BottomNavigationBarItem(
-              icon: Icon(FluentIcons.add_24_filled),
+              icon: Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: ColorsManager.primary.withOpacity(0.2),
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  FluentIcons.add_24_filled,
+                  color: cubit.currentIndex == 2
+                      ? ColorsManager.primary
+                      : Colors.grey,
+                ),
+              ),
               label: 'إعلان',
             ),
-            BottomNavigationBarItem(
+            const BottomNavigationBarItem(
               icon: Icon(FluentIcons.chat_24_regular),
               label: 'الرسائل',
             ),
-            BottomNavigationBarItem(
+            const BottomNavigationBarItem(
               icon: Icon(FluentIcons.person_24_regular),
               label: 'الحساب',
             ),

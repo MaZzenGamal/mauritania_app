@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mauritania/Features/chat/presentation/views/widgets/chat_bubble.dart';
-
 import '../../../../core/theme/colors.dart';
 
 class ChatScreenBody extends StatefulWidget {
@@ -14,10 +13,7 @@ class _ChatScreenBodyState extends State<ChatScreenBody> {
   final TextEditingController _controller = TextEditingController();
   final ScrollController _scrollController = ScrollController();
   final List<Map<String, dynamic>> _messages = [
-    {'text': 'Hey, how are you?', 'isMe': false, 'time': '10:00 AM', 'status': 'read'},
-    {'text': 'I\'m good! How about you?', 'isMe': true, 'time': '10:02 AM', 'status': 'read'},
-    {'text': 'Doing great, thanks for asking!', 'isMe': false, 'time': '10:03 AM', 'status': 'read'},
-    {'text': 'Any plans for the weekend?', 'isMe': true, 'time': '10:05 AM', 'status': 'sent'},
+    {'text': 'مرحبا، أنا مهتم، هل لا يزال متوفر؟', 'isMe': true, 'time': '10:00 AM', 'status': 'read'},
   ];
   bool _isTyping = false;
 
@@ -80,6 +76,21 @@ class _ChatScreenBodyState extends State<ChatScreenBody> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        // Alert message as regular text
+        Container(
+          color: ColorsManager.accentLight,
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Text(
+              'تنبيه هام: احرص على الحفاظ على خصوصيتك، لا ترسل أموالاً قبل التأكد من المنتج, لا تقم بفتح أي روابط تعتقد أنها مشبوهة وقابل البائع في مكان عام. سوقنا يهتم بسلامتك.',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: ColorsManager.grey900,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
         Expanded(
           child: ListView.builder(
             controller: _scrollController,
@@ -98,6 +109,22 @@ class _ChatScreenBodyState extends State<ChatScreenBody> {
             },
           ),
         ),
+        // Horizontal scrolling for suggested quick response messages
+        Container(
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          height: 50,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: [
+              _quickResponseButton('السلام عليكم'),
+              _quickResponseButton('هل المنتج متوفر؟'),
+              _quickResponseButton('مرحبا'),
+              _quickResponseButton('احتاج مزيدا من التفاصيل'),
+              _quickResponseButton('هل السعر قابل للتفاوض'),
+            ],
+          ),
+        ),
+        // Message input field and send button
         Container(
           decoration: BoxDecoration(
             color: ColorsManager.surface,
@@ -128,10 +155,6 @@ class _ChatScreenBodyState extends State<ChatScreenBody> {
                       horizontal: 20,
                       vertical: 12,
                     ),
-                    suffixIcon: IconButton(
-                      icon: const Icon(Icons.attach_file, color: ColorsManager.grey600),
-                      onPressed: () {},
-                    ),
                   ),
                   style: const TextStyle(color: ColorsManager.grey900),
                   onChanged: (value) {
@@ -152,6 +175,24 @@ class _ChatScreenBodyState extends State<ChatScreenBody> {
           ),
         ),
       ],
+    );
+  }
+
+  Widget _quickResponseButton(String text) {
+    return GestureDetector(
+      onTap: () {
+        _controller.text = text;
+        _sendMessage();
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        margin: const EdgeInsets.only(right: 8),
+        decoration: BoxDecoration(
+          color: ColorsManager.grey200,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Text(text),
+      ),
     );
   }
 }

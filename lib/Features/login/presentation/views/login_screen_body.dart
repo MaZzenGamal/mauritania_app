@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mauritania/Features/login/presentation/views/widgets/login_switcher.dart';
+import 'package:mauritania/Features/login/presentation/views/widgets/social_login_section.dart';
 import 'package:mauritania/Features/register/presentation/views/register_screen.dart';
 
 import '../../../../core/theme/colors.dart';
@@ -38,12 +39,19 @@ class LoginScreenBody extends StatelessWidget {
             height: 16,
           ),
           const LoginSwitcher(),
+          SocialLoginSection(),
+          const SizedBox(
+            height: 16,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
                 'ليس لديك حساب؟ ',
                 style: TextStyles.regular_14,
+              ),
+              const SizedBox(
+                width: 4,
               ),
               GestureDetector(
                 onTap: () {

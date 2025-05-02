@@ -99,7 +99,7 @@ class _FavoritesItemCardState extends State<FavouritesListViewItem> {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
-                      '300,000 دولار',
+                      '300,000 أوقية',
                       style: TextStyles.bold_14.copyWith(
                         color: Colors.white,
                       ),

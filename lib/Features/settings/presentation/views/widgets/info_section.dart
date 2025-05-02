@@ -35,7 +35,7 @@ class InfoSection extends StatelessWidget {
             _InfoCard(
                 onTap: null,
                 title: "الرصيد",
-                value: "300.00 ريال",
+                value: "300 أوقية",
                 icon: FluentIcons.wallet_24_regular),
             _InfoCard(
                 onTap: null,

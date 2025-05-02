@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mauritania/Features/home/presentation/view/widgets/advertisement_photo_stack.dart';
 import 'package:mauritania/Features/home/presentation/view/widgets/seller_info_section.dart';
 import 'package:mauritania/core/constants/unified_button.dart';
+import 'package:share/share.dart';
 
 import '../../../../../core/theme/colors.dart';
 import '../../../../../core/theme/styles.dart';
@@ -45,23 +46,55 @@ Column advertisementHeader(BuildContext context) {
             child: Text(
               'اسم المنتج - ماركة المنتج',
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
+                fontWeight: FontWeight.bold,
+              ),
+              textDirection: TextDirection.rtl,
             ),
           ),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-            decoration: BoxDecoration(
-              color: Colors.green.shade50,
-              borderRadius: BorderRadius.circular(8),
-              border: Border.all(color: Colors.green.shade100),
-            ),
-            child: Text(
-              '300 دولار',
-              style: TextStyles.bold_18.copyWith(
-                color: Colors.green.shade800,
+          Row(
+            textDirection: TextDirection.rtl,
+            children: [
+              Semantics(
+                label: 'مشاركة الإعلان',
+                child: InkWell(
+                  onTap: () {
+                    Share.share(
+                      'تحقق من هذا الإعلان: اسم المنتج - ماركة المنتج، السعر: 300 أوقية. الوصف: المنتج بحالة ممتازة، جديد تمامًا، وتم استخدامه مرة واحدة فقط. متاح للتوصيل داخل المدينة.',
+                      subject: 'إعلان: اسم المنتج - ماركة المنتج',
+                    );
+                  },
+                  borderRadius: BorderRadius.circular(8),
+                  child: Container(
+                    padding: const EdgeInsets.all(6),
+                    decoration: BoxDecoration(
+                      color: ColorsManager.primary10,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: const Icon(
+                      FluentIcons.share_24_filled,
+                      color: ColorsManager.primary,
+                      size: 20,
+                    ),
+                  ),
+                ),
               ),
-            ),
+              const SizedBox(width: 8),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                decoration: BoxDecoration(
+                  color: Colors.green.shade50,
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: Colors.green.shade100),
+                ),
+                child: Text(
+                  '300 أوقية',
+                  style: TextStyles.bold_18.copyWith(
+                    color: Colors.green.shade800,
+                  ),
+                  textDirection: TextDirection.rtl,
+                ),
+              ),
+            ],
           ),
         ],
       ),
@@ -85,6 +118,7 @@ class _ExpandableDescriptionState extends State<ExpandableDescription> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
+          textDirection: TextDirection.rtl,
           children: [
             const Icon(
               FluentIcons.text_description_24_filled,
@@ -95,6 +129,7 @@ class _ExpandableDescriptionState extends State<ExpandableDescription> {
             Text(
               'الوصف',
               style: TextStyles.bold_18.copyWith(color: ColorsManager.primary),
+              textDirection: TextDirection.rtl,
             ),
           ],
         ),
@@ -117,10 +152,11 @@ class _ExpandableDescriptionState extends State<ExpandableDescription> {
                 ),
                 maxLines: _isExpanded ? null : 3,
                 overflow: _isExpanded ? null : TextOverflow.ellipsis,
+                textDirection: TextDirection.rtl,
               ),
               const SizedBox(height: 8),
               Align(
-                alignment: Alignment.centerLeft,
+                alignment: Alignment.centerRight,
                 child: GestureDetector(
                   onTap: () {
                     setState(() {
@@ -133,6 +169,7 @@ class _ExpandableDescriptionState extends State<ExpandableDescription> {
                       color: Colors.blue.shade600,
                       fontWeight: FontWeight.w500,
                     ),
+                    textDirection: TextDirection.rtl,
                   ),
                 ),
               ),
@@ -148,22 +185,24 @@ Row actionButtons(context) {
   return Row(
     children: [
       Expanded(
-          child: UnifiedButton(
-        onPressed: () {},
-        title: 'اتصال',
-        icon: FluentIcons.call_24_filled,
-      )),
+        child: UnifiedButton(
+          onPressed: () {},
+          title: 'اتصال',
+          icon: FluentIcons.call_24_filled,
+        ),
+      ),
       const SizedBox(width: 12),
       Expanded(
-          child: UnifiedButton(
-        onPressed: () {
-          Navigator.push(context,  MaterialPageRoute(builder: (context) {
-            return const ChatScreen();
-          }));
-        },
-        title: 'محادثه',
-        icon: FluentIcons.chat_24_filled,
-      )),
+        child: UnifiedButton(
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return const ChatScreen();
+            }));
+          },
+          title: 'محادثه',
+          icon: FluentIcons.chat_24_filled,
+        ),
+      ),
     ],
   );
 }

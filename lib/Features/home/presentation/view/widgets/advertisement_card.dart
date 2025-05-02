@@ -163,7 +163,7 @@ class _AdvertisementCardState extends State<AdvertisementCard> {
                   ),
                   const SizedBox(height: 6),
                   Text(
-                    '300,000 دولار',
+                    '300,000 أوقية',
                     style: TextStyles.bold_16.copyWith(
                       color: Colors.green.shade700,
                     ),

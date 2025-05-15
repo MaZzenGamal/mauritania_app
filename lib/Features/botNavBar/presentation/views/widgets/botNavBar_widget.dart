@@ -39,14 +39,12 @@ class BotNavBarWidget extends StatelessWidget {
               icon: Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: ColorsManager.primary.withOpacity(0.2),
+                  color: Colors.amber,
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
                   FluentIcons.add_24_filled,
-                  color: cubit.currentIndex == 2
-                      ? ColorsManager.primary
-                      : Colors.grey,
+                  color: Colors.white,
                 ),
               ),
               label: 'إعلان',

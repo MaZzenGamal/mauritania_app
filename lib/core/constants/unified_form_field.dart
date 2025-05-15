@@ -153,7 +153,7 @@ class _UnifiedFormFieldState extends State<UnifiedFormField> {
               inputFormatters: widget.inputFormatters,
               decoration: InputDecoration(
                 hintText: widget.hint,
-                hintStyle: const TextStyle(color: ColorsManager.grey600),
+                hintStyle: const TextStyle(color: ColorsManager.grey600, fontSize: 15),
                 isCollapsed: true,
                 contentPadding: const EdgeInsets.symmetric(vertical: 14, horizontal: 0),
                 prefixIcon: widget.prefix != null

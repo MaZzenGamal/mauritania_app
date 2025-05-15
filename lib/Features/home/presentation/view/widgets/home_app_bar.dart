@@ -24,37 +24,11 @@ class HomeAppBar extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       child: Row(
         children: [
-          Stack(
-            children: [
-              IconButton(
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return const NotificationsScreen();
-                  }));
-                },
-                padding: EdgeInsets.zero,
-                icon: const Icon(
-                  FluentIcons.alert_24_regular,
-                  size: 35,
-                ),
-              ),
-              Positioned(
-                right: 10,
-                top: 10,
-                child: Container(
-                  width: 10,
-                  height: 10,
-                  decoration: BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                ),
-              ),
-            ],
-          ),
+          Image.asset(Assets.iconsLogoGreen,scale: 10,),
           Expanded(
             child: UnifiedFormField(
-              hint: 'اكتب كلمة البحث...',
+              hint: 'إبحث في سوقنا…',
+
               suffix: const Icon(
                 FluentIcons.search_48_regular,
                 color: Colors.black38,
@@ -73,7 +47,34 @@ class HomeAppBar extends StatelessWidget {
             ),
             tooltip: 'Contact Support',
           ),
-          Image.asset(Assets.iconsLogoGreen,scale: 12,),
+          Stack(
+            children: [
+              IconButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return const NotificationsScreen();
+                  }));
+                },
+                padding: EdgeInsets.zero,
+                icon: const Icon(
+                  FluentIcons.alert_24_regular,
+                  size: 30,
+                ),
+              ),
+              Positioned(
+                right: 11,
+                top: 11,
+                child: Container(
+                  width: 10,
+                  height: 10,
+                  decoration: BoxDecoration(
+                    color: Colors.red,
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );

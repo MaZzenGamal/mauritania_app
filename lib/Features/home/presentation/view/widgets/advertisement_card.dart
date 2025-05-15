@@ -121,7 +121,7 @@ class _AdvertisementCardState extends State<AdvertisementCard> {
                         ],
                       ),
                       child: Text(
-                        'sponsored',
+                        'مميز',
                         style: TextStyles.bold_12.copyWith( color: Colors.white),
                       ),
                     ),

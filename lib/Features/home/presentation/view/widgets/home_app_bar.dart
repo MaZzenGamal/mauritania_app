@@ -73,7 +73,7 @@ class HomeAppBar extends StatelessWidget {
             ),
             tooltip: 'Contact Support',
           ),
-          Image.asset(Assets.iconsLogo,scale: 18,),
+          Image.asset(Assets.iconsLogoGreen,scale: 12,),
         ],
       ),
     );

@@ -7,10 +7,7 @@ class OnboardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 0.0,
-      ),
-      body: const OnboardingScreenBody(),
+      body: SafeArea(child: const OnboardingScreenBody()),
     );
   }
 }

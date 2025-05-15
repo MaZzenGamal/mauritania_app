@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mauritania/Features/home/presentation/view/widgets/advertisement_photo_stack.dart';
 import 'package:mauritania/Features/home/presentation/view/widgets/seller_info_section.dart';
 import 'package:mauritania/core/constants/unified_button.dart';
-import 'package:share/share.dart';
+
 
 import '../../../../../core/theme/colors.dart';
 import '../../../../../core/theme/styles.dart';
@@ -58,10 +58,10 @@ Column advertisementHeader(BuildContext context) {
                 label: 'مشاركة الإعلان',
                 child: InkWell(
                   onTap: () {
-                    Share.share(
-                      'تحقق من هذا الإعلان: اسم المنتج - ماركة المنتج، السعر: 300 أوقية. الوصف: المنتج بحالة ممتازة، جديد تمامًا، وتم استخدامه مرة واحدة فقط. متاح للتوصيل داخل المدينة.',
-                      subject: 'إعلان: اسم المنتج - ماركة المنتج',
-                    );
+                    // Share.share(
+                    //   'تحقق من هذا الإعلان: اسم المنتج - ماركة المنتج، السعر: 300 أوقية. الوصف: المنتج بحالة ممتازة، جديد تمامًا، وتم استخدامه مرة واحدة فقط. متاح للتوصيل داخل المدينة.',
+                    //   subject: 'إعلان: اسم المنتج - ماركة المنتج',
+                    // );
                   },
                   borderRadius: BorderRadius.circular(8),
                   child: Container(

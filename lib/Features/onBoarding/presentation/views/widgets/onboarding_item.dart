@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:lottie/lottie.dart';
 import 'package:mauritania/core/theme/styles.dart';
 
@@ -12,26 +13,24 @@ class OnboardingItem extends StatelessWidget {
   final OnboardingModel onboardingModel ;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children:  [
-        Image.asset(
-          onboardingModel.image,
-          height: 400,
-          width: double.infinity,
-        ),
-        SizedBox(height: 4,),
-        Text(
-          onboardingModel.title,
-          style: TextStyles.bold_20,
-        ),
-        SizedBox(height:8,),
-        Text(
-          onboardingModel.content,
-          style: TextStyles.regular_16.copyWith(color: Colors.grey),
-          textAlign:  TextAlign.center,
-        ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children:  [
+          SvgPicture.asset(
+            onboardingModel.image,
+            height: 400,
+            width: double.infinity,
+          ),
+          SizedBox(height:8,),
+          Text(
+            onboardingModel.content,
+            style: TextStyles.regular_16.copyWith(color: Colors.grey),
+            textAlign:  TextAlign.center,
+          ),
+        ],
+      ),
     );
   }
 }

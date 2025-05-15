@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mauritania/Features/botNavBar/presentation/views/botNavBar_screen.dart';
 import 'package:mauritania/Features/language/presentation/views/language_selection_screen.dart';
+import 'package:mauritania/Features/onBoarding/presentation/views/onboarding_screen.dart';
 import 'package:mauritania/Features/splash/presentation/views/splash_screen.dart';
+import 'bloc_observer.dart';
 import 'core/theme/theme.dart';
 import 'generated/l10n.dart';
 
 void main() {
   runApp(const MyApp());
+  Bloc.observer = MyBlocObserver();
 }
 
 class MyApp extends StatefulWidget {
@@ -39,7 +43,7 @@ class _MyAppState extends State<MyApp> {
       locale: _locale,
       debugShowCheckedModeBanner: false,
       theme: AppTheme.theme,
-      home: //BotNavBarScreen()
+      home: //OnboardingScreen()
       SplashScreen(
         onLanguageChanged: _onLanguageChanged,
         currentLocale: _locale, // Pass the current locale

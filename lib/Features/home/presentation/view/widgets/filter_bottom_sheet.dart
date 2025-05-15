@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mauritania/core/constants/app_constants.dart';
 import 'package:mauritania/core/constants/unified_button.dart';
 import 'package:mauritania/core/theme/colors.dart';
 
@@ -8,33 +9,10 @@ import '../../controller/filter_cubit/filter_cubit.dart';
 class FilterBottomSheet extends StatelessWidget {
   const FilterBottomSheet({super.key});
 
-  final List<String> categories = const [
-    "الكل",
-    "سيارات",
-    "إلكترونيات",
-    "عقارات",
-    "ملابس",
-    "أثاث",
-    "أجهزة منزلية"
-  ];
-
   final List<String> sortOptions = const [
     'من الأرخص الى الأغلى',
     'الأكثر تقييماً',
     'الأكثر مبيعاً'
-  ];
-
-  final List<String> cities = const [
-    'لندن',
-    'ليفربول',
-    'مانشستر',
-    'برمنغهام',
-    'ليدز',
-    'نوتنغهام',
-    'شيفيلد',
-    'بريستول',
-    'كامبريدج',
-    'أوكسفورد',
   ];
 
   @override
@@ -76,6 +54,8 @@ class FilterBottomSheet extends StatelessWidget {
                             const SizedBox(height: 16),
                             _buildCategorySection(),
                             const SizedBox(height: 16),
+                            _buildLocationSection(),
+                            const SizedBox(height: 16),
                             _buildCitySection(),
                             const SizedBox(height: 16),
                             _buildSliderSection(),
@@ -112,7 +92,7 @@ class FilterBottomSheet extends StatelessWidget {
             const Text('الأقسام', style: TextStyle(fontWeight: FontWeight.bold)),
             const SizedBox(height: 8),
             Wrap(
-              children: List.generate(categories.length, (index) {
+              children: List.generate(AppConstants.categories.length, (index) {
                 final isSelected = context
                     .read<FilterCubit>()
                     .selectedCategories
@@ -120,7 +100,7 @@ class FilterBottomSheet extends StatelessWidget {
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
                   child: ChoiceChip(
-                    label: Text(categories[index]),
+                    label: Text(AppConstants.categories[index]),
                     selected: isSelected,
                     selectedColor: ColorsManager.primary,
                     backgroundColor: Colors.grey[200],
@@ -150,14 +130,14 @@ class FilterBottomSheet extends StatelessWidget {
     );
   }
 
-  Widget _buildCitySection() {
+  Widget _buildLocationSection() {
     return BlocBuilder<FilterCubit, FilterState>(
       builder: (context, state) {
         final cubit = context.read<FilterCubit>();
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('المدينة', style: TextStyle(fontWeight: FontWeight.bold)),
+            const Text('الموقع', style: TextStyle(fontWeight: FontWeight.bold)),
             const SizedBox(height: 8),
             GestureDetector(
               onTap: () {
@@ -168,11 +148,11 @@ class FilterBottomSheet extends StatelessWidget {
                     borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
                   ),
                   builder: (context) {
-                    return CitySelectionSheet(
-                      cities: cities,
-                      selectedIndex: cubit.selectedCityIndex,
-                      onCitySelected: (index) {
-                        cubit.selectCity(index);
+                    return LocationSelectionSheet(
+                      locations: AppConstants.locationsWithCities.keys.toList(),
+                      selectedLocation: cubit.selectedLocation,
+                      onLocationSelected: (location) {
+                        cubit.selectLocation(location);
                         Navigator.pop(context);
                       },
                     );
@@ -189,12 +169,10 @@ class FilterBottomSheet extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      cubit.selectedCityIndex >= 0
-                          ? cities[cubit.selectedCityIndex]
-                          : 'اختر المدينة',
-                      style: const TextStyle(fontSize: 16, color: Colors.black),
+                      cubit.selectedLocation ?? 'اختر الموقع',
+                      style: const TextStyle(fontSize: 16),
                     ),
-                    const Icon(Icons.arrow_drop_down, color: Colors.black),
+                    const Icon(Icons.arrow_drop_down),
                   ],
                 ),
               ),
@@ -205,6 +183,77 @@ class FilterBottomSheet extends StatelessWidget {
     );
   }
 
+  Widget _buildCitySection() {
+    return BlocBuilder<FilterCubit, FilterState>(
+      builder: (context, state) {
+        final cubit = context.read<FilterCubit>();
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text('المدينة', style: TextStyle(fontWeight: FontWeight.bold)),
+            const SizedBox(height: 8),
+            GestureDetector(
+              onTap: cubit.availableCities.isNotEmpty
+                  ? () {
+                showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius:
+                    BorderRadius.vertical(top: Radius.circular(20)),
+                  ),
+                  builder: (context) {
+                    return CitySelectionSheet(
+                      cities: cubit.availableCities,
+                      selectedIndex: cubit.selectedCityIndex,
+                      onCitySelected: (index) {
+                        cubit.selectCity(index);
+                        Navigator.pop(context);
+                      },
+                    );
+                  },
+                );
+              }
+                  : null,
+              child: Container(
+                padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                      color: cubit.availableCities.isNotEmpty
+                          ? Colors.grey.shade300
+                          : Colors.grey.shade100),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      cubit.selectedCityIndex >= 0 &&
+                          cubit.availableCities.isNotEmpty
+                          ? cubit.availableCities[cubit.selectedCityIndex]
+                          : 'اختر المدينة',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: cubit.availableCities.isNotEmpty
+                            ? Colors.black
+                            : Colors.grey,
+                      ),
+                    ),
+                    Icon(
+                      Icons.arrow_drop_down,
+                      color: cubit.availableCities.isNotEmpty
+                          ? Colors.black
+                          : Colors.grey,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   Widget _buildSortSection() {
     return BlocBuilder<FilterCubit, FilterState>(
@@ -347,7 +396,8 @@ class _CitySelectionSheetState extends State<CitySelectionSheet> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Text('اختر المدينة', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          const Text('اختر المدينة',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
           const SizedBox(height: 12),
           TextField(
             decoration: InputDecoration(
@@ -360,7 +410,9 @@ class _CitySelectionSheetState extends State<CitySelectionSheet> {
           const SizedBox(height: 12),
           SizedBox(
             height: 300,
-            child: ListView.builder(
+            child: filteredCities.isEmpty
+                ? const Center(child: Text('لا توجد مدن متاحة'))
+                : ListView.builder(
               itemCount: filteredCities.length,
               itemBuilder: (context, index) {
                 final cityName = filteredCities[index];
@@ -368,8 +420,91 @@ class _CitySelectionSheetState extends State<CitySelectionSheet> {
                 final isSelected = widget.selectedIndex == originalIndex;
                 return ListTile(
                   title: Text(cityName),
-                  trailing: isSelected ? const Icon(Icons.check, color: Colors.green) : null,
+                  trailing: isSelected
+                      ? const Icon(Icons.check, color: Colors.green)
+                      : null,
                   onTap: () => widget.onCitySelected(originalIndex),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class LocationSelectionSheet extends StatefulWidget {
+  final List<String> locations;
+  final String? selectedLocation;
+  final Function(String) onLocationSelected;
+
+  const LocationSelectionSheet({
+    super.key,
+    required this.locations,
+    required this.selectedLocation,
+    required this.onLocationSelected,
+  });
+
+  @override
+  State<LocationSelectionSheet> createState() => _LocationSelectionSheetState();
+}
+
+class _LocationSelectionSheetState extends State<LocationSelectionSheet> {
+  late List<String> filteredLocations;
+  String query = '';
+
+  @override
+  void initState() {
+    super.initState();
+    filteredLocations = widget.locations;
+  }
+
+  void _search(String value) {
+    setState(() {
+      query = value;
+      filteredLocations = widget.locations
+          .where((location) => location.contains(value))
+          .toList();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(16).copyWith(bottom: 32),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const Text(
+            'اختر الولاية',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 12),
+          TextField(
+            decoration: InputDecoration(
+              hintText: 'بحث...',
+              border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+              prefixIcon: const Icon(Icons.search),
+            ),
+            onChanged: _search,
+          ),
+          const SizedBox(height: 12),
+          SizedBox(
+            height: 300,
+            child: filteredLocations.isEmpty
+                ? const Center(child: Text('لا توجد ولايات متاحة'))
+                : ListView.builder(
+              itemCount: filteredLocations.length,
+              itemBuilder: (context, index) {
+                final location = filteredLocations[index];
+                final isSelected = widget.selectedLocation == location;
+                return ListTile(
+                  title: Text(location),
+                  trailing: isSelected
+                      ? const Icon(Icons.check, color: Colors.green)
+                      : null,
+                  onTap: () => widget.onLocationSelected(location),
                 );
               },
             ),

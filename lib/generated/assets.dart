@@ -6,12 +6,16 @@ class Assets {
   static const String iconsFacebook = 'assets/icons/facebook.svg';
   static const String iconsGoogle = 'assets/icons/google.svg';
   static const String iconsLogo = 'assets/icons/logo.png';
+  static const String iconsLogoGreen = 'assets/icons/logo_green.png';
   static const String iconsLogoLight = 'assets/icons/logo_light.png';
   static const String imagesCar = 'assets/images/car.png';
   static const String imagesCar1 = 'assets/images/car1.jpg';
   static const String imagesCar2 = 'assets/images/car2.jpg';
   static const String imagesCar3 = 'assets/images/car3.jpg';
   static const String imagesCar4 = 'assets/images/car4.jpg';
+  static const String imagesOnboarding1 = 'assets/images/onboarding_1.svg';
+  static const String imagesOnboarding2 = 'assets/images/onboarding_2.svg';
+  static const String imagesOnboarding3 = 'assets/images/onboarding_3.svg';
   static const String imagesPerson = 'assets/images/person.jpg';
 
 }

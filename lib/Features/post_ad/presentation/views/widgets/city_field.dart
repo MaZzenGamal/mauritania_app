@@ -1,6 +1,5 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../../core/theme/colors.dart';
 
 class CityField extends StatelessWidget {
@@ -16,10 +15,10 @@ class CityField extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
-          child:  Row(
+          child: Row(
             children: [
               Text(
-                'اختر المدينه',
+                'اختر المدينة',
                 style: TextStyle(
                   color: ColorsManager.primaryDark,
                   fontWeight: FontWeight.w600,
@@ -43,10 +42,10 @@ class CityField extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
             decoration: BoxDecoration(
               border: Border.all(
-                  color: selectedCity == null
-                      ? ColorsManager.primary40
-                      : ColorsManager.primaryOpacity20,
-                  width: 1.5
+                color: selectedCity == null
+                    ? ColorsManager.primary40
+                    : ColorsManager.primaryOpacity20,
+                width: 1.5,
               ),
               borderRadius: BorderRadius.circular(50),
               color: ColorsManager.primary10,
@@ -55,7 +54,6 @@ class CityField extends StatelessWidget {
                   color: ColorsManager.grey900.withOpacity(0.05),
                   blurRadius: 4,
                   offset: const Offset(0, 2),
-
                 ),
               ],
             ),
@@ -70,9 +68,9 @@ class CityField extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: Text(
-                      selectedCity ?? 'اختر المدينه',
+                      selectedCity ?? 'اختر المدينة',
                       style: TextStyle(
-                        color: selectedCity == null ? ColorsManager.grey600 : ColorsManager.grey900,
+                        color: ColorsManager.grey600, // Always use hint color
                       ),
                       textAlign: TextAlign.end,
                     ),

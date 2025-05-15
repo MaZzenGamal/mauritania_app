@@ -1,19 +1,21 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
+import '../../../../../core/constants/app_constants.dart';
 
 part 'filter_state.dart';
 
 class FilterCubit extends Cubit<FilterState> {
-  // Public filter values
   List<int> selectedCategories = [];
   int selectedSortIndex = 0;
   RangeValues selectedRange = const RangeValues(125, 500);
-  int selectedCityIndex = -1; // Default: No city selected
+  int selectedCityIndex = -1;
+
+  String? selectedLocation;
+  List<String> availableCities = [];
 
   FilterCubit() : super(FilterInitial());
 
-  // Method to update selected category
   void selectCategory(int categoryIndex, bool isSelected) {
     if (isSelected) {
       selectedCategories.add(categoryIndex);
@@ -23,29 +25,35 @@ class FilterCubit extends Cubit<FilterState> {
     emit(FilterUpdated());
   }
 
-  // Method to update sort index
   void selectSort(int index) {
     selectedSortIndex = index;
     emit(FilterUpdated());
   }
 
-  // Method to update city index
+  void selectLocation(String location) {
+    selectedLocation = location;
+    availableCities = AppConstants.locationsWithCities[location] ?? [];
+    selectedCityIndex = -1;
+    emit(FilterUpdated());
+  }
+
   void selectCity(int index) {
     selectedCityIndex = index;
     emit(FilterUpdated());
   }
 
-  // Method to update price range
   void updatePriceRange(RangeValues range) {
     selectedRange = range;
     emit(FilterUpdated());
   }
 
-  // Apply filter logic
   void applyFilter() {
-    print(
-        "Filter applied with: selectedCategories: $selectedCategories, "
-            "selectedSortIndex: $selectedSortIndex, selectedRange: $selectedRange, "
-            "selectedCityIndex: $selectedCityIndex");
+    final selectedCityName = availableCities.isNotEmpty && selectedCityIndex >= 0
+        ? availableCities[selectedCityIndex]
+        : null;
+
+    print("Filter applied with: selectedCategories: $selectedCategories, "
+        "selectedSortIndex: $selectedSortIndex, selectedRange: $selectedRange, "
+        "selectedLocation: $selectedLocation, selectedCity: $selectedCityName");
   }
 }

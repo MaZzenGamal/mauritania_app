@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
-
 import '../../../../../core/theme/colors.dart';
 
-class CategoryBottomSheet extends StatefulWidget {
-  final List<String> categories;
-  final String? selectedCategory;
-  final Function(String) onCategorySelected;
+class LocationBottomSheet extends StatefulWidget {
+  final List<String> locations;
+  final String? selectedLocation;
+  final Function(String) onLocationSelected;
 
-  const CategoryBottomSheet({
+  const LocationBottomSheet({
     super.key,
-    required this.categories,
-    this.selectedCategory,
-    required this.onCategorySelected,
+    required this.locations,
+    this.selectedLocation,
+    required this.onLocationSelected,
   });
 
   @override
-  _CategoryBottomSheetState createState() => _CategoryBottomSheetState();
+  _LocationBottomSheetState createState() => _LocationBottomSheetState();
 }
 
-class _CategoryBottomSheetState extends State<CategoryBottomSheet> {
+class _LocationBottomSheetState extends State<LocationBottomSheet> {
   String _searchQuery = '';
   final TextEditingController _searchController = TextEditingController();
 
@@ -30,8 +29,8 @@ class _CategoryBottomSheetState extends State<CategoryBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
-    final filteredCategories = widget.categories
-        .where((category) => category.contains(_searchQuery))
+    final filteredLocations = widget.locations
+        .where((location) => location.contains(_searchQuery))
         .toList();
 
     return Container(
@@ -53,7 +52,7 @@ class _CategoryBottomSheetState extends State<CategoryBottomSheet> {
           ),
           const SizedBox(height: 16),
           Text(
-            'اختر الفئة',
+            'اختر الموقع',
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
               fontWeight: FontWeight.bold,
               color: ColorsManager.primaryDark,
@@ -93,15 +92,18 @@ class _CategoryBottomSheetState extends State<CategoryBottomSheet> {
           ),
           const SizedBox(height: 16),
           Flexible(
-            child: ListView.builder(
+            child: filteredLocations.isEmpty
+                ? const Center(child: Text('لا توجد مواقع متاحة'))
+                : ListView.builder(
               shrinkWrap: true,
               physics: const ClampingScrollPhysics(),
-              itemCount: filteredCategories.length,
+              itemCount: filteredLocations.length,
               itemBuilder: (context, index) {
-                final category = filteredCategories[index];
+                final location = filteredLocations[index];
                 return InkWell(
                   onTap: () {
-                    widget.onCategorySelected(category);
+                    widget.onLocationSelected(location);
+                    Navigator.pop(context);
                   },
                   child: Container(
                     padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
@@ -113,11 +115,11 @@ class _CategoryBottomSheetState extends State<CategoryBottomSheet> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        if (widget.selectedCategory == category)
+                        if (widget.selectedLocation == location)
                           const Icon(Icons.check, color: ColorsManager.primary),
                         Expanded(
                           child: Text(
-                            category,
+                            location,
                             textAlign: TextAlign.end,
                             style: Theme.of(context)
                                 .textTheme

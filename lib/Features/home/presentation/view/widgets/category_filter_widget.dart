@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
+import 'package:mauritania/core/constants/app_constants.dart';
 
 import '../../../../../core/theme/colors.dart';
 import '../../../../../core/theme/styles.dart';
@@ -12,33 +13,31 @@ class CategoryFilterWidget extends StatefulWidget {
 }
 
 class _CategoryFilterWidgetState extends State<CategoryFilterWidget> {
-  List<String> categories = [
-    "الكل",
-    "سيارات",
-    "إلكترونيات",
-    "عقارات",
-    "ملابس",
-    "أثاث",
-    "أجهزة منزلية"
-  ];
   int selectedIndex = 0;
   bool showAll = false;
   bool _isTapped = false; // For tap animation
 
   final Map<String, IconData> categoryIcons = {
     "الكل": FluentIcons.grid_24_regular,
-    "سيارات": FluentIcons.vehicle_car_24_regular,
-    "إلكترونيات": FluentIcons.device_eq_24_regular,
-    "عقارات": FluentIcons.building_home_24_regular,
-    "ملابس": FluentIcons.person_tag_24_regular,
-    "أثاث": FluentIcons.couch_24_regular,
-    "أجهزة منزلية": FluentIcons.lightbulb_24_regular,
+    "سيارات ومركبات": FluentIcons.vehicle_car_24_regular,
+    "العقارات": FluentIcons.building_home_24_regular,
+    "الأجهزة الإلكترونية": FluentIcons.device_eq_24_regular,
+    "الخدمات": FluentIcons.toolbox_24_regular,
+    "الأثاث والديكور": FluentIcons.couch_24_regular,
+    "الموضة والجمال": FluentIcons.person_tag_24_regular,
+    "الوظائف": FluentIcons.briefcase_24_regular,
+    "الهوايات والترفيه": FluentIcons.sport_basketball_24_regular,
+    "مناسبات وحفلات": FluentIcons.balloon_24_regular,
+    "الحيوانات": FluentIcons.animal_cat_24_regular,
+    "معدات وأدوات مهنية": FluentIcons.toolbox_24_regular,
+    "أخرى": FluentIcons.more_horizontal_24_regular,
   };
+
 
   @override
   Widget build(BuildContext context) {
     List<String> visibleCategories =
-    showAll ? categories : categories.take(4).toList();
+    showAll ? AppConstants.categories : AppConstants.categories.take(4).toList();
 
     return Padding(
       padding: const EdgeInsets.only(right: 8.0),
@@ -122,7 +121,7 @@ class _CategoryFilterWidgetState extends State<CategoryFilterWidget> {
                   child: ChoiceChip(
                     avatar: Icon(
                       categoryIcons[category],
-                      color: selectedIndex == categories.indexOf(category)
+                      color: selectedIndex == AppConstants.categories.indexOf(category)
                           ? Colors.white
                           : Colors.black,
                       size: 20,
@@ -130,7 +129,7 @@ class _CategoryFilterWidgetState extends State<CategoryFilterWidget> {
                     label: Text(
                       category,
                       style: TextStyle(
-                        color: selectedIndex == categories.indexOf(category)
+                        color: selectedIndex == AppConstants.categories.indexOf(category)
                             ? Colors.white
                             : Colors.black,
                         fontWeight: FontWeight.w500,
@@ -142,10 +141,10 @@ class _CategoryFilterWidgetState extends State<CategoryFilterWidget> {
                       side: BorderSide(color: ColorsManager.primary),
                     ),
                     padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-                    selected: selectedIndex == categories.indexOf(category),
+                    selected: selectedIndex == AppConstants.categories.indexOf(category),
                     onSelected: (_) {
                       setState(() {
-                        selectedIndex = categories.indexOf(category);
+                        selectedIndex = AppConstants.categories.indexOf(category);
                       });
                     },
                     selectedColor: ColorsManager.primary,

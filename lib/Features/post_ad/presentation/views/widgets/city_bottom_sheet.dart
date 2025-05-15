@@ -52,7 +52,7 @@ class _CityBottomSheetState extends State<CityBottomSheet> {
           ),
           const SizedBox(height: 16),
           Text(
-            'اختر المدينه',
+            'اختر المدينة',
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
               fontWeight: FontWeight.bold,
               color: ColorsManager.primaryDark,
@@ -92,7 +92,9 @@ class _CityBottomSheetState extends State<CityBottomSheet> {
           ),
           const SizedBox(height: 16),
           Flexible(
-            child: ListView.builder(
+            child: filteredCities.isEmpty
+                ? const Center(child: Text('لا توجد مدن متاحة'))
+                : ListView.builder(
               shrinkWrap: true,
               physics: const ClampingScrollPhysics(),
               itemCount: filteredCities.length,

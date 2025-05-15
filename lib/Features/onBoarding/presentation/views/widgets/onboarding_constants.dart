@@ -12,22 +12,19 @@ bool onBoarding = CashHelper.getData(key: 'onBoarding') ?? false;
 
 final List<OnboardingModel> onBoardingItems = [
   OnboardingModel(
-      image: Assets.imagesCar3,
-      content: 'تستطيع التحكم في النشاطات الخاصة بك وتحديد الخطوات التي تريدها',
-      title: 'الاخبار',
-      body: 'handleWindowFocusChanged mWindowFocusChanged'),
+      image: Assets.imagesOnboarding1,
+      content: 'قم بشراء أو بيع أو استبدال أي عنصر بسهولة وسرعة.',
+  ),
   OnboardingModel(
-      image: Assets.imagesCar2,
+      image: Assets.imagesOnboarding2,
       content:
-      'يحتوي التطبيق علي العديد من الاقسام الخاصة بك وتحديد الخطوات التي تريدها',
-      title: 'التصفح',
-      body: 'handleWindowFocusChanged mWindowFocusChanged'),
+      'اتصل بالمعلن أو تواصل معه مباشرة عبر الدردشة داخل التطبيق, بسهولة وأمان.',
+    ),
   OnboardingModel(
-      image: Assets.imagesCar,
+      image: Assets.imagesOnboarding3,
       content:
-      ' يجمع بين كل المناسبات بشكل منظم يربط كل المناسبات بشكل منظم',
-      title: 'المناسبات',
-      body: 'handleWindowFocusChanged mWindowFocusChanged'),
+      'تصفح فئات تطبيق سوقنا بكل سرعة وسلاسة, وابحث عن ما تحتاجه بسهولة تامة.',
+      ),
 ];
 
 void submit(context) {
